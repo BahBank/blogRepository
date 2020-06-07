@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 //get, post, put, delete, any
 
 Route::get('/', function(){
-    echo 'Page d accueil';
+    return view('welcome');
 });
-
+ 
 Route::get('categories', 'CategorieController@liste');
 
 Route::get('categorie/{id}', 'CategorieController@getCategorie');
@@ -48,3 +48,7 @@ Route::get('delete-article/{id}','ArticleController@getDeleteArticle');
 
  
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

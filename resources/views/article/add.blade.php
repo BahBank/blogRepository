@@ -15,6 +15,14 @@
 
                 @csrf()
                 <div class="form-group">
+                <label for="categorie">Catégorie</label>
+                  <select name="categorie" class="form-control select2" >
+                   @foreach($categories as $categorie)
+                     <option value="{{ ($categorie->id) }}">{{ ($categorie->titre) }}</option>
+                   @endforeach
+                   </select>
+                </div>
+                <div class="form-group">
                     <label for="">Article</label>
                     <input type="text" name="title" class="form-control">
                     <span class="text-danger">{{ ($errors->has('title')) ? $errors->first('title') : '' }}</span>

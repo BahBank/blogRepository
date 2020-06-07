@@ -14,24 +14,28 @@ class ArticleController extends Controller
    }
       public function getAddArticle()
       {
-          return view('article.add');
+          $categories=DB::table('categories')->get();
+          return view('article.add')->with('categories',$categories);
       }
 
       public function storeArticle(Request $request){
 
         $rules = [
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+             'categorie'=>'required'
         ];
 
         $request->validate($rules);
 
         $title       = $request->title;
         $description = $request->description;
+        $categorie = $request->categorie;
 
         DB::table('article')->insert([
             'title'=>$title,
-            'description'=>$description
+            'description'=>$description,
+            'categorie' =>$categorie
         ]);
 
         return back()->with('succes', 'Enregistré');
